@@ -13,18 +13,6 @@ struct ContentView: View {
     
     var body: some View {
         
-        
-//        ZStack {
-            
-//            Image("bg")
-//                .resizable()
-//                .aspectRatio(contentMode: ContentMode.fill)
-//                .ignoresSafeArea()
-//
-//            LinearGradient(colors: [.white.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing)
-//                .ignoresSafeArea()
-            
-            
             if (quizManagerVM.model.isCompleted) {
                  QuizCompletedView(quizManagerVM: quizManagerVM)
                 
@@ -32,7 +20,6 @@ struct ContentView: View {
             } else {
                 VStack {
                     TitleView()
-                        .padding(.vertical, 16)
                     
                     Text("Mes points : \(quizManagerVM.myPoints)")
                         .foregroundColor(Color("Sapphire"))
@@ -81,7 +68,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(quizManagerVM: QuizManagerVM())
     }
 }
-
 
 
 

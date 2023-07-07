@@ -14,6 +14,7 @@ struct TitleView: View {
         VStack {
             Text("Quiz")
                 .font(.system(size: 28, weight: .bold))
+                .padding(.top, 16)
                 
                 
             Text("Culture générale sur le Japon")

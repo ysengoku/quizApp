@@ -19,11 +19,11 @@ class QuizManagerVM : ObservableObject {
     @Published var model = QuizManagerVM.createQuizModel(i: QuizManagerVM.currentIndex)
     
     var timer = Timer()
-    var maxProgress = 30
+    var maxProgress = 80
     @Published var progress = 0
-    @Published var timeRemaining = 30
+    @Published var timeRemaining = 80
     
-    var myPoints: Int = 0
+    @Published var myPoints: Int = 0
     
     init() {
         self.start()
@@ -50,7 +50,7 @@ class QuizManagerVM : ObservableObject {
                 
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if (QuizManagerVM.currentIndex < 2) {
+                if (QuizManagerVM.currentIndex < 9) {
                     QuizManagerVM.currentIndex = QuizManagerVM.currentIndex + 1 // Next question
                     self.model = QuizManagerVM.createQuizModel(i: QuizManagerVM.currentIndex)
                 } else {
@@ -67,11 +67,9 @@ class QuizManagerVM : ObservableObject {
     func restartQuiz() {
         QuizManagerVM.currentIndex = 0
         model = QuizManagerVM.createQuizModel(i: QuizManagerVM.currentIndex)
+        self.start()
+        myPoints = 0
     }
-    
-//    var timer = Timer()
-//    var maxProgress = 30
-//    @Published var progress = 0    timeRemaining = 30
     
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { time in
@@ -89,7 +87,7 @@ class QuizManagerVM : ObservableObject {
     func reset() {
         timer.invalidate()
         self.progress = 0
-        self.timeRemaining = 30
+        self.timeRemaining = 80
     }
     
 }
@@ -97,12 +95,12 @@ class QuizManagerVM : ObservableObject {
 extension QuizManagerVM {
     static var quizData: [QuizModel] {
         [
-            QuizModel(question: "Combien d'alphabets sont utilisés en japonais ?",
-                      answer: "B",
-                      options: [QuizOption(id: 11, optionId: "A", option: "2", color: Color.yellow),
-                                QuizOption(id: 12, optionId: "B", option: "3", color: Color.red),
-                                QuizOption(id: 13, optionId: "C", option: "4", color: Color.green),
-                                QuizOption(id: 14, optionId: "D", option: "1", color: Color.purple)]),
+            QuizModel(question: "Quelle ville a la même latitude que Tokyo?",
+                      answer: "A",
+                      options: [QuizOption(id: 11, optionId: "A", option: "Athènes", color: Color.yellow),
+                                QuizOption(id: 12, optionId: "B", option: "Rome", color: Color.red),
+                                QuizOption(id: 13, optionId: "C", option: "Marseille", color: Color.green),
+                                QuizOption(id: 14, optionId: "D", option: "Paris", color: Color.purple)]),
             
             QuizModel(question: "Quelle religion est la plus ancienne au Japon ?",
                       answer: "D",
@@ -111,12 +109,61 @@ extension QuizManagerVM {
                                 QuizOption(id: 23, optionId: "C", option: "Hindouisme", color: Color.green),
                                 QuizOption(id: 24, optionId: "D", option: "Shintoïsme", color: Color.purple)]),
             
-            QuizModel(question: "Quelles villes a la même latitude que Tokyo?",
+            QuizModel(question: "Combien d'alphabets sont-ils utilisés dans la langue japonaise ?",
+                      answer: "B",
+                      options: [QuizOption(id: 31, optionId: "A", option: "2", color: Color.yellow),
+                                QuizOption(id: 32, optionId: "B", option: "3", color: Color.red),
+                                QuizOption(id: 33, optionId: "C", option: "4", color: Color.green),
+                                QuizOption(id: 34, optionId: "D", option: "1", color: Color.purple)]),
+            
+            QuizModel(question: "Quel est le nom du train à grande vitesse japonais ?",
+                      answer: "C",
+                      options: [QuizOption(id: 41, optionId: "A", option: "KTX", color: Color.yellow),
+                                QuizOption(id: 42, optionId: "B", option: "Azusa", color: Color.red),
+                                QuizOption(id: 43, optionId: "C", option: "Shinkansen", color: Color.green),
+                                QuizOption(id: 44, optionId: "D", option: "Shinano", color: Color.purple)]),
+            
+            QuizModel(question: "Quel est le nombre de départements au Japon ?",
                       answer: "A",
-                      options: [QuizOption(id: 31, optionId: "A", option: "Athènes", color: Color.yellow),
-                                QuizOption(id: 32, optionId: "B", option: "Rome", color: Color.red),
-                                QuizOption(id: 33, optionId: "C", option: "Marseille", color: Color.green),
-                                QuizOption(id: 34, optionId: "D", option: "Paris", color: Color.purple)])
+                      options: [QuizOption(id: 51, optionId: "A", option: "47", color: Color.yellow),
+                                QuizOption(id: 52, optionId: "B", option: "94", color: Color.red),
+                                QuizOption(id: 53, optionId: "C", option: "13", color: Color.green),
+                                QuizOption(id: 54, optionId: "D", option: "50", color: Color.purple)]),
+            
+            QuizModel(question: "Quelle est la plus grande île de l'archipel au Japon ?",
+                      answer: "C",
+                      options: [QuizOption(id: 61, optionId: "A", option: "Shikoku", color: Color.yellow),
+                                QuizOption(id: 62, optionId: "B", option: "Hokkaidô", color: Color.red),
+                                QuizOption(id: 63, optionId: "C", option: "Honshû", color: Color.green),
+                                QuizOption(id: 64, optionId: "D", option: "Kyûshû", color: Color.purple)]),
+            
+            QuizModel(question: "Quelle est la fleur utilisée dans l'emblème de la famille impériale japonaise ?",
+                      answer: "B",
+                      options: [QuizOption(id: 71, optionId: "A", option: "Cerisier", color: Color.yellow),
+                                QuizOption(id: 72, optionId: "B", option: "Chrysanthème", color: Color.red),
+                                QuizOption(id: 73, optionId: "C", option: "Lis", color: Color.green),
+                                QuizOption(id: 74, optionId: "D", option: "Prunier", color: Color.purple)]),
+            
+            QuizModel(question: "Où fut située la première capitale du Japon ?",
+                      answer: "A",
+                      options: [QuizOption(id: 81, optionId: "A", option: "Nara", color: Color.yellow),
+                                QuizOption(id: 82, optionId: "B", option: "Kyoto", color: Color.red),
+                                QuizOption(id: 83, optionId: "C", option: "Osaka", color: Color.green),
+                                QuizOption(id: 84, optionId: "D", option: "Tokyo", color: Color.purple)]),
+            
+            QuizModel(question: "Le surnom du Japon est 'Pays...'?",
+                      answer: "D",
+                      options: [QuizOption(id: 91, optionId: "A", option: "de l'oncle Sam", color: Color.yellow),
+                                QuizOption(id: 92, optionId: "B", option: "du matin calme", color: Color.red),
+                                QuizOption(id: 93, optionId: "C", option: "du sourire", color: Color.green),
+                                QuizOption(id: 94, optionId: "D", option: "du soleil levant", color: Color.purple)]),
+            
+            QuizModel(question: "Quelle est la capitale actuelle du Japon ?",
+                      answer: "D",
+                      options: [QuizOption(id: 101, optionId: "A", option: "Osaka", color: Color.yellow),
+                                QuizOption(id: 102, optionId: "B", option: "Nagoya", color: Color.red),
+                                QuizOption(id: 103, optionId: "C", option: "Kyoto", color: Color.green),
+                                QuizOption(id: 104, optionId: "D", option: "Tokyo", color: Color.purple)])
         ]
     }
 }

@@ -34,18 +34,18 @@ struct OptionsView: View {
         var body: some View {
             VStack {
                 if (quizOption.isCorrect) && (quizOption.isSelected) {
-                    // The right answer is selected
+                    // If the right answer is selected
                     OptionStatusImageView(imageName: "checkmark")
                 } else if (!(quizOption.isCorrect) && (quizOption.isSelected)) {
-                    // A wrong answer is selected
+                    // If a wrong answer is selected
                     OptionStatusImageView(imageName: "xmark")
                 } else {
                     OptionView(quizOption: quizOption)
                 }
             }
-            .frame(width: 160, height: 160)
+            .frame(width: 160, height: 140)
             .foregroundColor(setTextColor())
-            .background(quizOption.color.opacity(0.8))
+            .background(quizOption.color.opacity(0.6))
             .cornerRadius(32)
         }
         
@@ -68,9 +68,6 @@ struct OptionsView: View {
                 Text(quizOption.optionId + ".")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.black.opacity(0.5))
-//                    .frame(width: 32, height: 32)
-//                    .background(.white)
-//                    .cornerRadius(25)
                 
                 Text(quizOption.option)
                     .frame(width: 150, height: 38)
